@@ -4,6 +4,7 @@ const STYLES = `
     flex-direction: column;
     gap: 6px;
 
+    width: 320px;
     border: 1px #000 solid;
     padding: 6px;
     background-color: color-mix(in lch, white 70%, crimson);

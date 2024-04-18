@@ -8,7 +8,7 @@
         <script type="module" src="index.mjs"></script>
     </head>
     <body>
-        <h1>With Templates Example</h1>
+        <h1>Templates First Example</h1>
 
         <template id="wc-alert-template">
             <style>
@@ -28,17 +28,16 @@
                 }
             </style>
             <div class="wrapper">
-                <p class="title"></p>
-                <p></p>
-                <button></button>
+                <p class="title"><slot name="title"></slot></p>
+                <p><slot name="text"></slot></p>
+                <button><slot name="button-text"></slot></button>
             </div>
         </template>
 
-        <wc-alert
-            title="Attention"
-            text="It's web-component alert!"
-            button-text="Wow 🤯"
-            id="wcalert"
-        ></wc-alert>
+        <wc-alert id="wcalert">
+            <span slot="title">Attention</span>
+            <span slot="text">It's web-component alert!</span>
+            <span slot="button-text">Wow 🤯</span>
+        </wc-alert>
     </body>
 </html>
