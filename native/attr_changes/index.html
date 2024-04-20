@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            class CuElement extends HTMLElement {
+                static observedAttributes = ['text'];
+                constructor() {
+                    super();
+
+                    const shadow = this.attachShadow({ mode: 'open' });
+
+                    shadow.appendChild(
+                        document.querySelector('#cuelement').content
+                    );
+
+                    this.shadow = shadow;
+                }
+
+                attributeChangedCallback(name, oldValue, newValue) {
+                    if (name === 'text') {
+                        this.shadow.querySelector('p').textContent = newValue;
+                    }
+                }
+            }
+            customElements.define('cu-element', CuElement);
+        </script>
+    </head>
+    <body>
+        <template id="cuelement">
+            <p></p>
+        </template>
+
+        <cu-element id="displayer" text="Default text"></cu-element>
+
+        <button id="changer">Change attribute value</button>
+
+        <script>
+            changer.addEventListener('click', () => {
+                displayer.setAttribute('text', 'New text');
+            });
+        </script>
+    </body>
+</html>
